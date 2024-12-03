@@ -34,7 +34,7 @@ export async function updateProfile(formData: TFormData) {
 
   if (!originUrl) throw new Error("no origin header found");
 
-  const supabase = await getSuapabaseServerComponent();
+  const supabase = getSuapabaseServerComponent();
 
   const {
     data: { session },

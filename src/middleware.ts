@@ -34,8 +34,8 @@ export async function middleware(req: NextRequest) {
   // if the path is only for unauthenticated users, we only allow unauthenticated users
   if (isPathUnauthenticated) {
     if (session) {
-      console.log({ session });
       console.log("path is protected for authenticated users, redirecting");
+      console.log(req.nextUrl.origin);
       return NextResponse.redirect(`${req.nextUrl.origin}/`);
     } else {
       return res;

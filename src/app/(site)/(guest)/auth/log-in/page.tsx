@@ -12,6 +12,7 @@ import { Logo } from "@/components/ui/logo";
 import { AuthFormAreas } from "../auth-form.models";
 import { Alert } from "@/components/ui/alert";
 import { useProtectRouteFromAuthUsers } from "@/utils/auth-validations/client-side-validations";
+import { SignInAnonymouslyBtn } from "@/components/feature/sign-in-anonymously";
 
 export default function LogInPage() {
   const [errorLogginIn, setErrorLogginIn] = useState<boolean>(false);
@@ -154,6 +155,14 @@ export default function LogInPage() {
           </Alert>
         )}
       </form>
+      <section className="flex flex-col gap-4">
+        <div className="grid grid-cols-[1fr_20px_1fr] items-center justify-center gap-2 dark:text-neutral-300">
+          <hr className="w-full h-[2px] bg-neutral-300 dark:bg-cm-lighter-gray" />
+          or
+          <hr className="w-full h-[2px] bg-neutral-300 dark:bg-cm-lighter-gray" />
+        </div>
+        <SignInAnonymouslyBtn />
+      </section>
     </section>
   );
 }

@@ -28,10 +28,11 @@ export async function GET(request: NextRequest) {
         0,
         12,
       );
+
       const { error: errorCreatingUserProfile } = await supabase
         .from("profiles")
         .insert({
-          name: user.email?.split("@")[0],
+          name: randomUsername,
           user_id: user.id,
           username: randomUsername,
         });

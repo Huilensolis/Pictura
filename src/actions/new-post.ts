@@ -31,7 +31,7 @@ export async function createNewPost(
     throw new Error("error validating formData schema");
   }
 
-  const supabase = await getSuapabaseServerComponent();
+  const supabase = getSuapabaseServerComponent();
 
   let imageUrl: string | null = null;
 
