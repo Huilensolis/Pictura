@@ -3,6 +3,42 @@ import { Heading } from "@/components/ui/typography/heading";
 import { getSuapabaseServerComponent } from "@/supabase/models/index.models";
 import { Post } from "./components/post";
 import { RecentPosts } from "./components/recent-posts";
+import { Metadata } from "next";
+
+export async function generateMetadata({
+  params: { postid },
+}: {
+  params: { postid: string };
+}): Promise<Metadata> {
+  const supabase = getSuapabaseServerComponent();
+
+  const { data: postData } = await supabase
+    .from("posts")
+    .select("*")
+    .eq("id", postid)
+    .single();
+
+  if (!postData) {
+    return {
+      title: "Post Not Found",
+    };
+  }
+
+  return {
+    title: postData.caption || "Pictura Post",
+    description: `Check out this post on Pictura!`,
+    openGraph: {
+      title: postData.caption || "Pictura Post",
+      description: `Check out this post on Pictura!`,
+      images: [
+        {
+          url: postData.image_url,
+          alt: postData.caption || "Pictura Post",
+        },
+      ],
+    },
+  };
+}
 
 export default async function PostPage({
   params: { postid },
